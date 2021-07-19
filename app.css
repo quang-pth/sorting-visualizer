@@ -26,3 +26,12 @@ body {
     margin: 0 auto;
 }
 
+
+.bar {
+    width: 28px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background-color: rgb(0, 183, 255);
+    transition: 0.2s all ease;
+}
