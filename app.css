@@ -14,3 +14,11 @@ body {
     border-radius: 19px;
     font-weight: bolder;
 }
+
+.data-container {
+    width: 600px;
+    height: 384px;
+    position: relative;
+    margin: 0 auto;
+}
+
