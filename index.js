@@ -18,3 +18,12 @@ function generatebars(num = 20) {
         container.appendChild(bar);
     }
 }
+
+
+// create initial bar
+generatebars();
+
+// re-create bars everytime user click new array button
+function generate() {
+    window.location.reload();
+}
