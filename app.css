@@ -2,3 +2,15 @@ body {
     background-color: rgb(255, 235, 211);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.head {
+    margin-top: 20px;
+    margin-right: 20vw;
+    margin-left: 20vw;
+    text-align: center;
+    font-size: 30px;
+    background-color: #6f459e;
+    color: white;
+    border-radius: 19px;
+    font-weight: bolder;
+}
