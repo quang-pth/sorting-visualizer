@@ -1,3 +1,7 @@
+.mySlides {
+    display: none;
+}
+
 body {
     background-color: rgb(255, 235, 211);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
