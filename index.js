@@ -1,5 +1,6 @@
 $.getScript("./adjust-btn.js");
 $.getScript("./sorting-algo/selection-sort.js");
+$.getScript("./sorting-algo/bubble-sort.js");
 
 const container = document.querySelector(".data-container");
 
@@ -39,4 +40,10 @@ const selectionBtn = document.getElementById('selection-btn');
 selectionBtn.addEventListener('click', () => {
     disable();
     SelectionSort(50);
+});
+
+const bubbleBtn = document.getElementById('bubble-btn');
+bubbleBtn.addEventListener('click', () => {
+    disable();
+    BubbleSort(50);
 });
