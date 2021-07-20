@@ -1,11 +1,12 @@
 $.getScript("./adjust-btn.js");
 $.getScript("./sorting-algo/selection-sort.js");
 $.getScript("./sorting-algo/bubble-sort.js");
+$.getScript("./sorting-algo/quick-sort.js");
 
 const container = document.querySelector(".data-container");
 
-function generatebars(num = 20) {
-    for (let idx = 0; idx < 20; idx++) {
+function generatebars(num = 44) {
+    for (let idx = 0; idx < num; idx++) {
         const value = Math.floor(Math.random() * 100) + 1;
         const bar = document.createElement("div");
         bar.classList.add('bar');
@@ -39,11 +40,18 @@ newArrBtn.addEventListener('click', () => {
 const selectionBtn = document.getElementById('selection-btn');
 selectionBtn.addEventListener('click', () => {
     disable();
-    SelectionSort(50);
+    SelectionSort(45);
 });
 
 const bubbleBtn = document.getElementById('bubble-btn');
 bubbleBtn.addEventListener('click', () => {
     disable();
-    BubbleSort(50);
+    BubbleSort(45);
 });
+
+const quickBtn = document.getElementById('quick-btn');
+quickBtn.addEventListener('click', () => {
+    disable();
+    quickSort(45);
+});
+
