@@ -1,6 +1,6 @@
-function quickSort(delay) {
+async function quickSort(delay) {
     let bars = document.querySelectorAll(".bar");
-    quickSortPartitioning(bars, 0, bars.length - 1, delay);
+    await quickSortPartitioning(bars, 0, bars.length - 1, delay);
     enable();
 }
 
