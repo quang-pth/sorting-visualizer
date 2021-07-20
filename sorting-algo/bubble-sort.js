@@ -7,9 +7,9 @@ async function BubbleSort(delay) {
         for (let j = i + 1; j < bars.length; j++) {
             bars[j].style.backgroundColor = 'red';
             // pause execution to generate visualization
-            await new Promise((resole) => {
+            await new Promise((resolve) => {
                 setTimeout(() => {
-                    resole();
+                    resolve();
                 }, delay);
             });
             // 
