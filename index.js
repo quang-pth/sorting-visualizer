@@ -52,38 +52,31 @@ async function SelectionSort(delay = 50) {
             }
         }
             // To swap ith and (min_idx)th bar
-            var temp1 = bars[min_idx].style.height;
-            // min_idx value label
-            var temp2 = bars[min_idx].childNodes[0].innerText;
-            // swap actual height
-            bars[min_idx].style.height = bars[i].style.height;
-            bars[i].style.height = temp1;
-            // swap label
-            bars[min_idx].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-            bars[i].childNodes[0].innerText = temp2;
-            
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve();
-                }, delay);
-            });
+        var temp1 = bars[min_idx].style.height;
+        // min_idx value label
+        var temp2 = bars[min_idx].childNodes[0].innerText;
+        // swap actual height
+        bars[min_idx].style.height = bars[i].style.height;
+        bars[i].style.height = temp1;
+        // swap label
+        bars[min_idx].childNodes[0].innerText = bars[i].childNodes[0].innerText;
+        bars[i].childNodes[0].innerText = temp2;
+        
+        await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, delay);
+        });
 
-            // Provide skyblue color to the (min-idx)th bar
-            bars[min_idx].style.backgroundColor = "rgb(24, 190, 255)";
-            // Provide lightgreen color to the ith bar
-            bars[i].style.backgroundColor = "rgb(49, 226, 13)";
+        // Provide skyblue color to the (min-idx)th bar
+        bars[min_idx].style.backgroundColor = "rgb(24, 190, 255)";
+        // Provide lightgreen color to the ith bar
+        bars[i].style.backgroundColor = "rgb(49, 226, 13)";
 
-        }
-         // To enable the button "Generate New Array" after final(sorted)
-        document.getElementById('Button1').disabled = false;
-        document.getElementById('Button1').style.backgroundColor = "#6f459e";
-        // To enable the button "Selection Sort" after final(sorted)
-        document.getElementById("Button2").disabled = false;
-        document.getElementById("Button2").style.backgroundColor = "#6f459e";
+    }
+    enable();
+    
 }
-
-// create initial bar
-generatebars();
 
 // re-create bars everytime user click new array button
 function generate() {
@@ -95,10 +88,35 @@ function generate() {
 function disable()
 {
   // To disable the button "Generate New Array"
-  document.getElementById("Button1").disabled = true;
-  document.getElementById("Button1").style.backgroundColor = "#d8b6ff";
+  document.getElementById("new-arr-tn").disabled = true;
+  document.getElementById("new-arr-tn").style.backgroundColor = "#d8b6ff";
   
   // To disable the button "Selection Sort"
-  document.getElementById("Button2").disabled = true;
-  document.getElementById("Button2").style.backgroundColor = "#d8b6ff";  
+  document.getElementById("selection-btn").disabled = true;
+  document.getElementById("selection-btn").style.backgroundColor = "#d8b6ff";  
 }
+
+// function to enable the button
+function enable() {
+    // To enable the button "Generate New Array" after final(sorted)
+    document.getElementById('new-arr-tn').disabled = false;
+    document.getElementById('new-arr-tn').style.backgroundColor = "#6f459e";
+    // To enable the button "Selection Sort" after final(sorted)
+    document.getElementById("selection-btn").disabled = false;
+    document.getElementById("selection-btn").style.backgroundColor = "#6f459e";
+}
+
+// create initial bar
+generatebars();
+
+const newArrBtn = document.querySelector('.new-btn');
+newArrBtn.addEventListener('click', () => {
+    generate();
+});
+
+const selectionBtn = document.querySelector('.sorting-btn');
+selectionBtn.addEventListener('click', () => {
+    disable();
+    SelectionSort(50);
+});
+
