@@ -1,3 +1,6 @@
+$.getScript("./adjust-btn.js");
+$.getScript("./sorting-algo/selection-sort.js");
+
 const container = document.querySelector(".data-container");
 
 function generatebars(num = 20) {
@@ -19,104 +22,21 @@ function generatebars(num = 20) {
     }
 }
 
-// define selection sort algorithm
-async function SelectionSort(delay = 50) {
-    let bars = document.querySelectorAll(".bar");
-
-    for (let i = 0; i < bars.length; i++) {
-        let min_idx = i;
-        // provide darkblue color for ith bar
-        bars[i].style.backgroundColor = 'darkblue';
-        for (let j = i + 1; j < bars.length; j++) {
-            bars[j].style.backgroundColor = 'red';
-            // pause execution to generate visualization
-            await new Promise((resole) => {
-                setTimeout(() => {
-                    resole();
-                }, delay);
-            });
-            // 
-            let val1 = parseInt(bars[j].childNodes[0].innerHTML);
-            let val2 = parseInt(bars[min_idx].childNodes[0].innerHTML);
-            
-            // Compare val1 & val2
-            if (val1 < val2) {
-                if (min_idx !== i) {
-                    // Provide skyblue color to the (min-idx)th bar
-                    bars[min_idx].style.backgroundColor = "rgb(24, 190, 255)";
-                }
-                min_idx = j;
-            } else {
-                // Provide skyblue color to the jth bar
-                bars[j].style.backgroundColor = "rgb(24, 190, 255)";
-            }
-        }
-            // To swap ith and (min_idx)th bar
-        var temp1 = bars[min_idx].style.height;
-        // min_idx value label
-        var temp2 = bars[min_idx].childNodes[0].innerText;
-        // swap actual height
-        bars[min_idx].style.height = bars[i].style.height;
-        bars[i].style.height = temp1;
-        // swap label
-        bars[min_idx].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-        bars[i].childNodes[0].innerText = temp2;
-        
-        await new Promise((resolve) => {
-            setTimeout(() => {
-                resolve();
-            }, delay);
-        });
-
-        // Provide skyblue color to the (min-idx)th bar
-        bars[min_idx].style.backgroundColor = "rgb(24, 190, 255)";
-        // Provide lightgreen color to the ith bar
-        bars[i].style.backgroundColor = "rgb(49, 226, 13)";
-
-    }
-    enable();
-    
-}
-
 // re-create bars everytime user click new array button
 function generate() {
     window.location.reload();
 }
 
-
-//  function to disable the button
-function disable()
-{
-  // To disable the button "Generate New Array"
-  document.getElementById("new-arr-tn").disabled = true;
-  document.getElementById("new-arr-tn").style.backgroundColor = "#d8b6ff";
-  
-  // To disable the button "Selection Sort"
-  document.getElementById("selection-btn").disabled = true;
-  document.getElementById("selection-btn").style.backgroundColor = "#d8b6ff";  
-}
-
-// function to enable the button
-function enable() {
-    // To enable the button "Generate New Array" after final(sorted)
-    document.getElementById('new-arr-tn').disabled = false;
-    document.getElementById('new-arr-tn').style.backgroundColor = "#6f459e";
-    // To enable the button "Selection Sort" after final(sorted)
-    document.getElementById("selection-btn").disabled = false;
-    document.getElementById("selection-btn").style.backgroundColor = "#6f459e";
-}
-
 // create initial bar
 generatebars();
 
-const newArrBtn = document.querySelector('.new-btn');
+const newArrBtn = document.getElementById('new-arr-btn');
 newArrBtn.addEventListener('click', () => {
     generate();
 });
 
-const selectionBtn = document.querySelector('.sorting-btn');
+const selectionBtn = document.getElementById('selection-btn');
 selectionBtn.addEventListener('click', () => {
     disable();
     SelectionSort(50);
 });
-
