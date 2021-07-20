@@ -43,7 +43,7 @@ body {
     text-align: center;
 }
 
-.btn1 {
+.new-btn {
     padding: 12px;
     font-weight: bolder;
     background-color: #6f459e;
@@ -57,7 +57,7 @@ body {
 
 }
 
-.btn2 {
+.sorting-btn {
     padding: 12px;
     font-weight: bolder;
     background-color: #6f459e;
