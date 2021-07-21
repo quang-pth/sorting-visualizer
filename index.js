@@ -2,6 +2,7 @@ $.getScript("./adjust-btn.js");
 $.getScript("./sorting-algo/selection-sort.js");
 $.getScript("./sorting-algo/bubble-sort.js");
 $.getScript("./sorting-algo/quick-sort.js");
+$.getScript("./sorting-algo/merge-sort.js");
 
 const container = document.querySelector(".data-container");
 
@@ -53,5 +54,11 @@ const quickBtn = document.getElementById('quick-btn');
 quickBtn.addEventListener('click', () => {
     disable();
     quickSort(45);
+});
+
+const mergeBtn = document.getElementById('merge-btn');
+mergeBtn.addEventListener('click', () => {
+    disable();
+    mergeSort(45);
 });
 
