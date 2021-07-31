@@ -44,6 +44,12 @@ body {
     text-align: center;
 }
 
+#control-bar {
+    display: flex;
+    margin-top: 10vh;
+    justify-content: space-between;
+}
+
 .new-btn {
     padding: 12px;
     font-weight: bolder;
@@ -52,9 +58,9 @@ body {
     color: white;
     font-size: 16px;
     border: white;
-    margin-left: 37vw;
+    /* margin-left: 37vw;
     margin-top: 4vw;
-    margin-right: 1vw;
+    margin-right: 1vw; */
 
 }
 
