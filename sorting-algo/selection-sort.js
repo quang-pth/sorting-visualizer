@@ -29,10 +29,10 @@ async function SelectionSort(delay = 50) {
                 bars[j].style.backgroundColor = "rgb(24, 190, 255)";
             }
         }
-            // To swap ith and (min_idx)th bar
-        var temp1 = bars[min_idx].style.height;
+        // To swap ith and (min_idx)th bar
+        const temp1 = bars[min_idx].style.height;
         // min_idx value label
-        var temp2 = bars[min_idx].childNodes[0].innerText;
+        const temp2 = bars[min_idx].childNodes[0].innerText;
         // swap actual height
         bars[min_idx].style.height = bars[i].style.height;
         bars[i].style.height = temp1;

@@ -24,8 +24,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
     rightHalf.push(parseInt(bars[idx].style.height));
   }
 
-  const sortedArray = new Array(leftHalf.length + rightHalf.length);
-  let currentIdx = 0;
   let sourceArrIdx = leftArrIdx;
   let rightArrIdx = middleIdx + 1;
   let leftIdx = 0;
@@ -46,7 +44,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
     const rightHeight = rightHalf[rightIdx];
 
     if (leftHeight <= rightHeight) {
-      sortedArray[currentIdx] = leftHeight;
       bars[sourceArrIdx].style.height = `${leftHeight}px`;
       bars[sourceArrIdx].childNodes[0].innerHTML = leftHeight / 3;
       bars[leftArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
@@ -54,7 +51,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
       leftIdx += 1;
       leftArrIdx += 1;
     } else {
-      sortedArray[currentIdx] = rightHeight;
       bars[sourceArrIdx].style.height = `${rightHeight}px`;
       bars[sourceArrIdx].childNodes[0].innerHTML = rightHeight / 3;
       bars[rightArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
@@ -75,7 +71,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
       bars[leftArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
     }
 
-    currentIdx += 1;
     sourceArrIdx += 1;
   }
 
@@ -87,12 +82,10 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
   });
 
   while (leftIdx < leftHalf.length) {
-    sortedArray[currentIdx] = leftHalf[leftIdx];
     bars[sourceArrIdx].style.height = `${leftHalf[leftIdx]}px`;
     bars[sourceArrIdx].childNodes[0].innerHTML = leftHalf[leftIdx] / 3;
 
     leftIdx += 1;
-    currentIdx += 1;
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
@@ -104,12 +97,10 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
   }
 
   while (rightIdx < rightHalf.length) {
-    sortedArray[currentIdx] = rightHalf[rightIdx];
     bars[sourceArrIdx].style.height = `${rightHalf[leftIdx]}px`;
     bars[sourceArrIdx].childNodes[0].innerHTML = rightHalf[rightIdx] / 3;
 
     rightIdx += 1;
-    currentIdx += 1;
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
