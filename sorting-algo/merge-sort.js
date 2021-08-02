@@ -16,6 +16,7 @@ async function runMergeSort(bars, startIdx, endIdx, delay) {
 async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
   const leftHalf = [];
   const rightHalf = [];
+  const isFinalSort = leftArrIdx === 0 && endIdx === bars.length - 1;
 
   for (let idx = leftArrIdx; idx < middleIdx + 1; idx++) {
     leftHalf.push(parseInt(bars[idx].style.height));
@@ -46,14 +47,18 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
     if (leftHeight <= rightHeight) {
       bars[sourceArrIdx].style.height = `${leftHeight}px`;
       bars[sourceArrIdx].childNodes[0].innerHTML = leftHeight / 3;
-      bars[leftArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+      bars[leftArrIdx].style.backgroundColor = isFinalSort
+        ? "rgb(49, 226, 13)"
+        : "rgb(24, 190, 255)";
 
       leftIdx += 1;
       leftArrIdx += 1;
     } else {
       bars[sourceArrIdx].style.height = `${rightHeight}px`;
       bars[sourceArrIdx].childNodes[0].innerHTML = rightHeight / 3;
-      bars[rightArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+      bars[rightArrIdx].style.backgroundColor = isFinalSort
+        ? "rgb(49, 226, 13)"
+        : "rgb(24, 190, 255)";
 
       rightIdx += 1;
       rightArrIdx += 1;
@@ -66,9 +71,13 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
     });
 
     if (leftHeight <= rightHeight) {
-      bars[rightArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+      bars[rightArrIdx].style.backgroundColor = isFinalSort
+        ? "rgb(49, 226, 13)"
+        : "rgb(24, 190, 255)";
     } else {
-      bars[leftArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+      bars[leftArrIdx].style.backgroundColor = isFinalSort
+        ? "rgb(49, 226, 13)"
+        : "rgb(24, 190, 255)";
     }
 
     sourceArrIdx += 1;
@@ -92,7 +101,9 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
       }, delay);
     });
 
-    bars[sourceArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+    bars[sourceArrIdx].style.backgroundColor = isFinalSort
+      ? "rgb(49, 226, 13)"
+      : "rgb(24, 190, 255)";
     sourceArrIdx += 1;
   }
 
@@ -107,7 +118,9 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
       }, delay);
     });
 
-    bars[sourceArrIdx].style.backgroundColor = "rgb(24, 190, 255)";
+    bars[sourceArrIdx].style.backgroundColor = isFinalSort
+      ? "rgb(49, 226, 13)"
+      : "rgb(24, 190, 255)";
     sourceArrIdx += 1;
   }
 }
