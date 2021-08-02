@@ -2,4 +2,5 @@ This project is made on purpose helping you to easily visualize how famous sorti
 
 
 *Note:
-Feel free to use my source code and modify it in order to make it your own.
+Feel free to use my source code model and modify to make it become your owns.
+This project is written in pure HTML&CSS&JS only, so it's easier for you even if a learning beginner.
