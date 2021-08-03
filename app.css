@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: rgb(255, 235, 211);
+    background-color: rgb(233, 223, 214);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -64,6 +64,11 @@ body {
 
 }
 
+.new-btn:hover {
+  background-color: #543775;
+  cursor: pointer;
+}
+
 .sorting-btn {
     padding: 12px;
     font-weight: bolder;
@@ -72,6 +77,11 @@ body {
     color: white;
     font-size: 16px;
     border: white;
+}
+
+.sorting-btn:hover {
+  background-color: #543775;
+  cursor: pointer;
 }
 
 #speed-id {
