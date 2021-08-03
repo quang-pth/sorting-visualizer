@@ -24,11 +24,6 @@ async function insertionSort(delay) {
 
 function swap(bars, i, j) {
     let firstHeight = bars[i].style.height;
-    let firstLabel = bars[i].childNodes[0].innerText;
-    
     bars[i].style.height = bars[j].style.height;
     bars[j].style.height = firstHeight;
-
-    bars[i].childNodes[0].innerText = bars[j].childNodes[0].innerText;
-    bars[j].childNodes[0].innerText = firstLabel;
 }

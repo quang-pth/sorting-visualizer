@@ -46,7 +46,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
 
     if (leftHeight <= rightHeight) {
       bars[sourceArrIdx].style.height = `${leftHeight}px`;
-      bars[sourceArrIdx].childNodes[0].innerHTML = leftHeight / 3;
       bars[leftArrIdx].style.backgroundColor = isFinalSort
         ? "rgb(49, 226, 13)"
         : "rgb(24, 190, 255)";
@@ -55,7 +54,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
       leftArrIdx += 1;
     } else {
       bars[sourceArrIdx].style.height = `${rightHeight}px`;
-      bars[sourceArrIdx].childNodes[0].innerHTML = rightHeight / 3;
       bars[rightArrIdx].style.backgroundColor = isFinalSort
         ? "rgb(49, 226, 13)"
         : "rgb(24, 190, 255)";
@@ -92,7 +90,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
 
   while (leftIdx < leftHalf.length) {
     bars[sourceArrIdx].style.height = `${leftHalf[leftIdx]}px`;
-    bars[sourceArrIdx].childNodes[0].innerHTML = leftHalf[leftIdx] / 3;
 
     leftIdx += 1;
     await new Promise((resolve) => {
@@ -109,7 +106,6 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
 
   while (rightIdx < rightHalf.length) {
     bars[sourceArrIdx].style.height = `${rightHalf[leftIdx]}px`;
-    bars[sourceArrIdx].childNodes[0].innerHTML = rightHalf[rightIdx] / 3;
 
     rightIdx += 1;
     await new Promise((resolve) => {

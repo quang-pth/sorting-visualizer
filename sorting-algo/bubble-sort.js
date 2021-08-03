@@ -13,19 +13,13 @@ async function BubbleSort(delay) {
                 }, delay);
             });
             // 
-            let secondValue = parseInt(bars[j].childNodes[0].innerHTML);
-            let firstValue = parseInt(bars[i].childNodes[0].innerHTML);
+            let secondValue = parseInt(bars[j].style.height);
+            let firstValue = parseInt(bars[i].style.height);
             
             if (secondValue < firstValue) {
                 let firstHeight = bars[i].style.height;
-                let firstLabel = bars[i].childNodes[0].innerText;
-                
                 bars[i].style.height = bars[j].style.height;
                 bars[j].style.height = firstHeight;
-
-                bars[i].childNodes[0].innerText = bars[j].childNodes[0].innerText;
-                bars[j].childNodes[0].innerText = firstLabel;
-                
                 
                 await new Promise((resolve) => {
                     setTimeout(() => {

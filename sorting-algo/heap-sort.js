@@ -80,9 +80,6 @@ async function siftDown(heapBars, currentIdx, endIdx, delay) {
 
 function swapValue(bars, i, j) {
   const temp1 = bars[j].style.height;
-  const temp2 = bars[j].childNodes[0].innerText;
   bars[j].style.height = bars[i].style.height;
   bars[i].style.height = temp1;
-  bars[j].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-  bars[i].childNodes[0].innerText = temp2;
 }

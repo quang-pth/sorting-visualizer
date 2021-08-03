@@ -20,19 +20,16 @@ body {
 }
 
 .data-container {
-    width: 600px;
-    height: 384px;
-    position: relative;
-    right: 27vw;
-    margin: 0 auto;
+  width: 61vw;
+  height: 384px;
+  display: flex;
+  justify-content: space-around;
+  
 }
 
 
 .bar {
     width: 3px;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
     background-color: rgb(0, 183, 255);
     transition: 0.2s all ease;
 }
@@ -75,6 +72,10 @@ body {
 }
 
 #speed-id {
+    color: #6f459e;
+}
+
+#new-arr-id {
     color: #6f459e;
 }
 
