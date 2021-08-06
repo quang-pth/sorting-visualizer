@@ -3,7 +3,7 @@ async function BubbleSort(delay) {
 
     for (let i = 0; i < bars.length; i++) {
         // provide darkblue color for ith bar
-        bars[i].style.backgroundColor = 'darkblue';
+        bars[i].style.backgroundColor = 'red';
         for (let j = i + 1; j < bars.length; j++) {
             bars[j].style.backgroundColor = 'red';
             // pause execution to generate visualization

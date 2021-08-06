@@ -3,9 +3,9 @@ async function insertionSort(delay) {
 
     for (let i = 1; i < bars.length; i++) {
         let j = i;
-        bars[i].style.backgroundColor = 'darkblue';
+        bars[i].style.backgroundColor = 'red';
         while (j > 0 && parseInt(bars[j].style.height) < parseInt(bars[j - 1].style.height)) {
-            bars[j].style.backgroundColor = 'darkblue';
+            bars[j].style.backgroundColor = 'red';
 
             await new Promise((resolve) => {
                 setTimeout(() => {

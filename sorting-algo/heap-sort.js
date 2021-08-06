@@ -9,8 +9,8 @@ async function heapSort(delay) {
       }, delay);
     });
     swapValue(bars, 0, idx);
-    await siftDown(bars, 0, idx - 1, delay);
     bars[idx].style.backgroundColor = 'rgb(49, 226, 13)';
+    await siftDown(bars, 0, idx - 1, delay);
   }
 
   enable();
@@ -37,9 +37,9 @@ async function siftDown(heapBars, currentIdx, endIdx, delay) {
     }
 
     if (idxToSwap !== -1) {
-      heapBars[idxToSwap].style.backgroundColor = "darkblue";
+      heapBars[idxToSwap].style.backgroundColor = "red";
     }
-    heapBars[currentIdx].style.backgroundColor = "darkblue";
+    heapBars[currentIdx].style.backgroundColor = "red";
 
     await new Promise((resolve) => {
       setTimeout(() => {
