@@ -8,7 +8,7 @@ $.getScript("./sorting-algo/heap-sort.js");
 
 const container = document.querySelector(".data-container");
 
-function generatebars(num = 45) {
+function generatebars(num = 50) {
   for (let idx = 0; idx < num; idx++) {
     const value = Math.floor(Math.random() * 100) + 1;
     const bar = document.createElement("div");
