@@ -1,126 +1,162 @@
 async function mergeSort(delay) {
   const bars = document.querySelectorAll(".bar");
   if (bars.length === 1) return;
-  await runMergeSort(bars, 0, bars.length - 1, delay);
+  const cloneBars = [];
+  for (let idx = 0; idx < bars.length; idx++) {
+    cloneBars.push(bars[idx].cloneNode());
+  }
+  await runMergeSort(bars, 0, bars.length - 1, delay, cloneBars);
   enable();
 }
 
-async function runMergeSort(bars, startIdx, endIdx, delay) {
+async function runMergeSort(bars, startIdx, endIdx, delay, cloneBars) {
   if (startIdx >= endIdx) return;
   const middleIdx = Math.floor((endIdx + startIdx) / 2);
-  await runMergeSort(bars, startIdx, middleIdx, delay);
-  await runMergeSort(bars, middleIdx + 1, endIdx, delay);
-  await mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay);
+  await runMergeSort(bars, startIdx, middleIdx, delay, cloneBars);
+  await runMergeSort(bars, middleIdx + 1, endIdx, delay, cloneBars);
+  await mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneBars);
 }
 
-async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay) {
+async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, cloneBars) {
   const leftHalf = [];
   const rightHalf = [];
-  const isFinalSort = leftArrIdx === 0 && endIdx === bars.length - 1;
+  const sortedBars = [];
+
+  const isFinalSort = leftArrIdx === 0 && endIdx === cloneBars.length - 1;
 
   for (let idx = leftArrIdx; idx < middleIdx + 1; idx++) {
-    leftHalf.push(parseInt(bars[idx].style.height));
+    leftHalf.push(parseInt(cloneBars[idx].style.height));
   }
   for (let idx = middleIdx + 1; idx < endIdx + 1; idx++) {
-    rightHalf.push(parseInt(bars[idx].style.height));
+    rightHalf.push(parseInt(cloneBars[idx].style.height));
   }
 
   let sourceArrIdx = leftArrIdx;
-  let rightArrIdx = middleIdx + 1;
   let leftIdx = 0;
   let rightIdx = 0;
 
   while (leftIdx <= leftHalf.length - 1 && rightIdx <= rightHalf.length - 1) {
-    // set color
-    bars[leftArrIdx].style.backgroundColor = "darkblue";
-    bars[rightArrIdx].style.backgroundColor = "darkblue";
-
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, delay);
-    });
-
     const leftHeight = leftHalf[leftIdx];
     const rightHeight = rightHalf[rightIdx];
-
     if (leftHeight <= rightHeight) {
-      bars[sourceArrIdx].style.height = `${leftHeight}px`;
-      bars[sourceArrIdx].childNodes[0].innerHTML = leftHeight / 3;
-      bars[leftArrIdx].style.backgroundColor = isFinalSort
-        ? "rgb(49, 226, 13)"
-        : "rgb(24, 190, 255)";
-
+      sortedBars.push(leftHeight);
+      cloneBars[sourceArrIdx].style.height = `${leftHeight}px`;
       leftIdx += 1;
-      leftArrIdx += 1;
     } else {
-      bars[sourceArrIdx].style.height = `${rightHeight}px`;
-      bars[sourceArrIdx].childNodes[0].innerHTML = rightHeight / 3;
-      bars[rightArrIdx].style.backgroundColor = isFinalSort
-        ? "rgb(49, 226, 13)"
-        : "rgb(24, 190, 255)";
-
+      sortedBars.push(rightHeight);
+      cloneBars[sourceArrIdx].style.height = `${rightHeight}px`;
       rightIdx += 1;
-      rightArrIdx += 1;
     }
-
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, delay);
-    });
-
-    if (leftHeight <= rightHeight) {
-      bars[rightArrIdx].style.backgroundColor = isFinalSort
-        ? "rgb(49, 226, 13)"
-        : "rgb(24, 190, 255)";
-    } else {
-      bars[leftArrIdx].style.backgroundColor = isFinalSort
-        ? "rgb(49, 226, 13)"
-        : "rgb(24, 190, 255)";
-    }
-
     sourceArrIdx += 1;
   }
 
-  bars[sourceArrIdx].style.backgroundColor = "darkblue";
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, delay);
-  });
-
   while (leftIdx < leftHalf.length) {
-    bars[sourceArrIdx].style.height = `${leftHalf[leftIdx]}px`;
-    bars[sourceArrIdx].childNodes[0].innerHTML = leftHalf[leftIdx] / 3;
-
+    sortedBars.push(leftHalf[leftIdx]);
+    cloneBars[sourceArrIdx].style.height = `${leftHalf[leftIdx]}px`;
     leftIdx += 1;
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, delay);
-    });
-
-    bars[sourceArrIdx].style.backgroundColor = isFinalSort
-      ? "rgb(49, 226, 13)"
-      : "rgb(24, 190, 255)";
     sourceArrIdx += 1;
   }
 
   while (rightIdx < rightHalf.length) {
-    bars[sourceArrIdx].style.height = `${rightHalf[leftIdx]}px`;
-    bars[sourceArrIdx].childNodes[0].innerHTML = rightHalf[rightIdx] / 3;
-
+    sortedBars.push(rightHalf[rightIdx]);
+    cloneBars[sourceArrIdx].style.height = `${rightHalf[rightIdx]}px`;
     rightIdx += 1;
+    sourceArrIdx += 1;
+  }
+
+  const sortedLeft = sortedBars.slice(0, middleIdx + 1);
+  const sortedRight = sortedBars.slice(middleIdx + 1);
+
+  // animate on original bars
+  let srcLeftIdx = leftArrIdx;
+  let srcRightIdx = middleIdx + 1;
+  let currentIdx = 0;
+
+  while (currentIdx < sortedLeft.length && currentIdx < sortedRight.length) {
+    bars[srcLeftIdx].style.backgroundColor = 'red';
+    bars[srcRightIdx].style.backgroundColor = 'red';
+
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, delay);
     });
 
-    bars[sourceArrIdx].style.backgroundColor = isFinalSort
-      ? "rgb(49, 226, 13)"
+    bars[srcLeftIdx].style.height = `${sortedLeft[currentIdx]}px`;
+    bars[srcLeftIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
+
+    bars[srcRightIdx].style.height = `${sortedRight[currentIdx]}px`;
+    bars[srcRightIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
+    
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+
+    bars[srcLeftIdx].style.backgroundColor = isFinalSort
+    ? "rgb(49, 226, 13)"
+    : "rgb(24, 190, 255)";
+    bars[srcRightIdx].style.backgroundColor = isFinalSort
+    ? "rgb(49, 226, 13)"
       : "rgb(24, 190, 255)";
-    sourceArrIdx += 1;
+    
+    srcLeftIdx++;
+    srcRightIdx++;
+    currentIdx++;
   }
+
+  let remainIdx = srcLeftIdx <= middleIdx ? srcLeftIdx : srcRightIdx;
+
+  while (currentIdx < sortedLeft.length) {
+    bars[remainIdx].style.backgroundColor = 'red';
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+    bars[remainIdx].style.height = `${sortedLeft[currentIdx]}px`;
+    bars[remainIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+
+    bars[remainIdx].style.backgroundColor = isFinalSort
+    ? "rgb(49, 226, 13)"
+    : "rgb(24, 190, 255)";
+    
+    currentIdx++;
+    remainIdx++;
+  }
+
+  while (currentIdx < sortedRight.length) {
+    bars[remainIdx].style.backgroundColor = 'red';
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+    bars[remainIdx].style.height = `${sortedRight[currentIdx]}px`;
+    bars[remainIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+
+    bars[remainIdx].style.backgroundColor = isFinalSort
+    ? "rgb(49, 226, 13)"
+    : "rgb(24, 190, 255)";
+    
+    currentIdx++;
+    remainIdx++;
+  }
+
 }
+
+  
+    
