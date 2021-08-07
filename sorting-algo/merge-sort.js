@@ -17,25 +17,25 @@ async function runMergeSort(bars, startIdx, endIdx, delay, cloneBars) {
   await mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneBars);
 }
 
-async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, cloneBars) {
+async function mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneBars) {
   const leftHalf = [];
   const rightHalf = [];
   const sortedBars = [];
 
-  const isFinalSort = leftArrIdx === 0 && endIdx === cloneBars.length - 1;
+  const isFinalSort = startIdx === 0 && endIdx === cloneBars.length - 1;
 
-  for (let idx = leftArrIdx; idx < middleIdx + 1; idx++) {
+  for (let idx = startIdx; idx < middleIdx + 1; idx++) {
     leftHalf.push(parseInt(cloneBars[idx].style.height));
   }
   for (let idx = middleIdx + 1; idx < endIdx + 1; idx++) {
     rightHalf.push(parseInt(cloneBars[idx].style.height));
   }
 
-  let sourceArrIdx = leftArrIdx;
+  let sourceArrIdx = startIdx;
   let leftIdx = 0;
   let rightIdx = 0;
 
-  while (leftIdx <= leftHalf.length - 1 && rightIdx <= rightHalf.length - 1) {
+  while (leftIdx < leftHalf.length && rightIdx < rightHalf.length) {
     const leftHeight = leftHalf[leftIdx];
     const rightHeight = rightHalf[rightIdx];
     if (leftHeight <= rightHeight) {
@@ -64,11 +64,11 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, clon
     sourceArrIdx += 1;
   }
 
-  const sortedLeft = sortedBars.slice(0, middleIdx + 1);
-  const sortedRight = sortedBars.slice(middleIdx + 1);
+  const sortedLeft = sortedBars.slice(0, middleIdx - startIdx + 1);
+  const sortedRight = sortedBars.slice(middleIdx - startIdx + 1);
 
   // animate on original bars
-  let srcLeftIdx = leftArrIdx;
+  let srcLeftIdx = startIdx;
   let srcRightIdx = middleIdx + 1;
   let currentIdx = 0;
 
@@ -84,6 +84,12 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, clon
 
     bars[srcLeftIdx].style.height = `${sortedLeft[currentIdx]}px`;
     bars[srcLeftIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
+    
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
 
     bars[srcRightIdx].style.height = `${sortedRight[currentIdx]}px`;
     bars[srcRightIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
@@ -106,17 +112,15 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, clon
     currentIdx++;
   }
 
-  let remainIdx = srcLeftIdx <= middleIdx ? srcLeftIdx : srcRightIdx;
-
   while (currentIdx < sortedLeft.length) {
-    bars[remainIdx].style.backgroundColor = 'red';
+    bars[srcLeftIdx].style.backgroundColor = 'red';
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, delay);
     });
-    bars[remainIdx].style.height = `${sortedLeft[currentIdx]}px`;
-    bars[remainIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
+    bars[srcLeftIdx].style.height = `${sortedLeft[currentIdx]}px`;
+    bars[srcLeftIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -124,23 +128,23 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, clon
       }, delay);
     });
 
-    bars[remainIdx].style.backgroundColor = isFinalSort
+    bars[srcLeftIdx].style.backgroundColor = isFinalSort
     ? "rgb(49, 226, 13)"
     : "rgb(24, 190, 255)";
     
     currentIdx++;
-    remainIdx++;
+    srcLeftIdx++;
   }
 
   while (currentIdx < sortedRight.length) {
-    bars[remainIdx].style.backgroundColor = 'red';
+    bars[srcRightIdx].style.backgroundColor = 'red';
     await new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, delay);
     });
-    bars[remainIdx].style.height = `${sortedRight[currentIdx]}px`;
-    bars[remainIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
+    bars[srcRightIdx].style.height = `${sortedRight[currentIdx]}px`;
+    bars[srcRightIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -148,12 +152,12 @@ async function mergeSortedArray(bars, leftArrIdx, middleIdx, endIdx, delay, clon
       }, delay);
     });
 
-    bars[remainIdx].style.backgroundColor = isFinalSort
+    bars[srcRightIdx].style.backgroundColor = isFinalSort
     ? "rgb(49, 226, 13)"
     : "rgb(24, 190, 255)";
     
     currentIdx++;
-    remainIdx++;
+    srcRightIdx++;
   }
 
 }
