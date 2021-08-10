@@ -12,16 +12,21 @@
 <body>
     <!-- body -->
     <section class="head">Sorting Visualization</section>
-    <section class="data-container">
-
-    </section>
+    <div class="center-bar">
+        <section class="data-container">
+            
+        </section>
+    </div>
 
     <section id="control-bar">
         <!-- create new array button -->
         <div>
             <button class="new-btn" id="new-arr-btn">New Array</button>
+            <label for="#array_size" id="size_id"> <b> Array Size</b> 
+                <input id="array_size" type="range" min=20 max=160 step=10 value=60>
+            </label>
             <label for="#sort-speed" id="speed-id"> <b> Speed</b> 
-                <input id="sort-speed" type="range" min=20 max=200 step=10 value=60>
+                <input id="sort-speed" type="range" min=20 max=200 step=10 value=20>
             </label>
         </div>
 
