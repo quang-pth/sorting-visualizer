@@ -12,6 +12,7 @@ function disable() {
   }
 
   document.getElementById("sort-speed").disabled = true;
+  document.getElementById("array_size").disabled = true;
 }
 
 // function to enable the button
@@ -26,4 +27,5 @@ function enable() {
     btn.style.backgroundColor = "#6f459e";
   }
   document.getElementById("sort-speed").disabled = false;
+  document.getElementById("array_size").disabled = false;
 }
