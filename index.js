@@ -8,14 +8,18 @@ $.getScript("./sorting-algo/heap-sort.js");
 
 const container = document.querySelector(".data-container");
 
-function generatebars(num = 50) {
+const arraySize = document.getElementById("array_size");
+let numOfBars = arraySize.value;
+arraySize.addEventListener("input", () => {
+  numOfBars = arraySize.value;
+});
+
+function generatebars(num = numOfBars) {
   for (let idx = 0; idx < num; idx++) {
     const value = Math.floor(Math.random() * 100) + 1;
     const bar = document.createElement("div");
     bar.classList.add("bar");
     bar.style.height = `${value * 3}px`;
-    // offset bar horizontally
-    bar.style.transform = `translateX(${idx * 30}px)`;
     // add bar to container
     container.appendChild(bar);
   }
@@ -23,7 +27,12 @@ function generatebars(num = 50) {
 
 // re-create bars everytime user click new array button
 function generate() {
-  window.location.reload();
+  // window.location.reload();
+  const bars = document.querySelectorAll('.bar');
+  for (let idx = 0; idx < bars.length; idx++) {
+    bars[idx].remove();
+  }
+  generatebars(numOfBars);
 }
 
 // create initial bar
