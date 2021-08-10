@@ -14,12 +14,12 @@ async function quickSortPartitioning(bars, startIdx, endIdx, delay) {
     
     bars[pivotIdx].style.backgroundColor = 'darkblue';
 
-    let pivotValue = parseInt(bars[pivotIdx].childNodes[0].innerHTML);
+    let pivotValue = parseInt(bars[pivotIdx].style.height);
     while (leftIdx <= rightIdx) {
       bars[leftIdx].style.backgroundColor = "red";
       bars[rightIdx].style.backgroundColor = "red";
-      let leftValue = parseInt(bars[leftIdx].childNodes[0].innerHTML);
-      let rightValue = parseInt(bars[rightIdx].childNodes[0].innerHTML);
+      let leftValue = parseInt(bars[leftIdx].style.height);
+      let rightValue = parseInt(bars[rightIdx].style.height);
 
       await new Promise((resolve) => {
         setTimeout(() => {
@@ -68,11 +68,7 @@ async function quickSortPartitioning(bars, startIdx, endIdx, delay) {
 
 function swapValue(bars, i, j) {
     let firstHeight = bars[i].style.height;
-    let firstLabel = bars[i].childNodes[0].innerHTML;
     
     bars[i].style.height = bars[j].style.height;
     bars[j].style.height = firstHeight;
-
-    bars[i].childNodes[0].innerHTML = bars[j].childNodes[0].innerHTML;
-    bars[j].childNodes[0].innerHTML = firstLabel;
 }

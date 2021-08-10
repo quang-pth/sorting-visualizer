@@ -16,12 +16,6 @@ function generatebars(num = 50) {
     bar.style.height = `${value * 3}px`;
     // offset bar horizontally
     bar.style.transform = `translateX(${idx * 30}px)`;
-    // create bar label associated with its value
-    const barLabel = document.createElement("label");
-    barLabel.classList.add("bar_id");
-    barLabel.innerHTML = value;
-    // add label to bar
-    bar.appendChild(barLabel);
     // add bar to container
     container.appendChild(bar);
   }

@@ -14,8 +14,8 @@ async function SelectionSort(delay = 50) {
                 }, delay);
             });
             // 
-            let val1 = parseInt(bars[j].childNodes[0].innerHTML);
-            let val2 = parseInt(bars[min_idx].childNodes[0].innerHTML);
+            let val1 = parseInt(bars[j].style.height);
+            let val2 = parseInt(bars[min_idx].style.height);
             
             // Compare val1 & val2
             if (val1 < val2) {
@@ -31,14 +31,9 @@ async function SelectionSort(delay = 50) {
         }
         // To swap ith and (min_idx)th bar
         const temp1 = bars[min_idx].style.height;
-        // min_idx value label
-        const temp2 = bars[min_idx].childNodes[0].innerText;
         // swap actual height
         bars[min_idx].style.height = bars[i].style.height;
         bars[i].style.height = temp1;
-        // swap label
-        bars[min_idx].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-        bars[i].childNodes[0].innerText = temp2;
         
         await new Promise((resolve) => {
             setTimeout(() => {

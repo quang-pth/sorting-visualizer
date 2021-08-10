@@ -83,7 +83,6 @@ async function mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneB
     });
 
     bars[srcLeftIdx].style.height = `${sortedLeft[currentIdx]}px`;
-    bars[srcLeftIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
     
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -92,7 +91,6 @@ async function mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneB
     });
 
     bars[srcRightIdx].style.height = `${sortedRight[currentIdx]}px`;
-    bars[srcRightIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
     
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -120,7 +118,6 @@ async function mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneB
       }, delay);
     });
     bars[srcLeftIdx].style.height = `${sortedLeft[currentIdx]}px`;
-    bars[srcLeftIdx].childNodes[0].innerHTML = sortedLeft[currentIdx] / 3;
 
     await new Promise((resolve) => {
       setTimeout(() => {
@@ -144,7 +141,6 @@ async function mergeSortedArray(bars, startIdx, middleIdx, endIdx, delay, cloneB
       }, delay);
     });
     bars[srcRightIdx].style.height = `${sortedRight[currentIdx]}px`;
-    bars[srcRightIdx].childNodes[0].innerHTML = sortedRight[currentIdx] / 3;
 
     await new Promise((resolve) => {
       setTimeout(() => {
