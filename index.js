@@ -5,6 +5,7 @@ $.getScript("./sorting-algo/quick-sort.js");
 $.getScript("./sorting-algo/merge-sort.js");
 $.getScript("./sorting-algo/insertion-sort.js");
 $.getScript("./sorting-algo/heap-sort.js");
+$.getScript("./sorting-algo/radix-sort.js");
 
 const container = document.querySelector(".data-container");
 
@@ -16,10 +17,10 @@ arraySize.addEventListener("input", () => {
 
 function generatebars(num = numOfBars) {
   for (let idx = 0; idx < num; idx++) {
-    const value = Math.floor(Math.random() * 100) + 1;
+    const value = Math.floor(Math.random() * 400) + 1;
     const bar = document.createElement("div");
     bar.classList.add("bar");
-    bar.style.height = `${value * 3}px`;
+    bar.style.height = `${value}px`;
     // add bar to container
     container.appendChild(bar);
   }
@@ -83,4 +84,10 @@ const heapBtn = document.getElementById("heap-btn");
 heapBtn.addEventListener("click", () => {
   disable();
   heapSort(delayTime);
+});
+
+const radixBtn = document.getElementById("radix-btn");
+radixBtn.addEventListener("click", () => {
+  disable();
+  radixSort(delayTime);
 });
