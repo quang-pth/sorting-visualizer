@@ -50,19 +50,25 @@ async function quickSortPartitioning(bars, startIdx, endIdx, delay) {
     });
 
     swapValue(bars, pivotIdx, rightIdx);
-    
+  
+  const leftSubarrayIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);
+  if (leftSubarrayIsSmaller) {
     await quickSortPartitioning(bars, startIdx, rightIdx - 1, delay);
     await quickSortPartitioning(bars, rightIdx + 1, endIdx, delay);
+  } else {
+    await quickSortPartitioning(bars, rightIdx + 1, endIdx, delay);
+    await quickSortPartitioning(bars, startIdx, rightIdx - 1, delay);
+  }
 
-    await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, delay);
-      });
-    bars[pivotIdx].style.backgroundColor = "rgb(49, 226, 13)";
-    for (let idx = startIdx ? startIdx - 1 : startIdx; idx <= endIdx; idx++) {
-        bars[idx].style.backgroundColor = "rgb(49, 226, 13)";
-    }
+  await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+  bars[pivotIdx].style.backgroundColor = "rgb(49, 226, 13)";
+  for (let idx = startIdx ? startIdx - 1 : startIdx; idx <= endIdx; idx++) {
+      bars[idx].style.backgroundColor = "rgb(49, 226, 13)";
+  }
       
 }
 
