@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: rgb(233, 223, 214);
+    /* background-color: rgb(233, 223, 214); */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -22,13 +22,14 @@ body {
 .center-bar {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 3vh;
   margin-bottom: 20vh;
 }
 
 .data-container {
     display: flex;
     justify-content: space-around;
+    height: 55vh;
 
 }
 
@@ -40,7 +41,7 @@ body {
 
 #control-bar {
     display: flex;
-    margin-top: 20vh;
+    margin-top: 21vh;
     justify-content: space-between;
 }
 
@@ -48,11 +49,10 @@ body {
     padding: 12px;
     font-weight: bolder;
     background-color: #6f459e;
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     border: white;
-
 }
 
 .new-btn:hover {
@@ -64,9 +64,9 @@ body {
     padding: 12px;
     font-weight: bolder;
     background-color: #6f459e;
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     border: white;
 }
 
@@ -74,6 +74,23 @@ body {
   background-color: #543775;
   cursor: pointer;
 }
+
+#reset_btn {
+    padding: 10px;
+    font-weight: bolder;
+    background-color: #ec5012;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    border: white;
+    margin-top: 10px;
+}
+
+#reset_btn:hover {
+  background-color: #97350e;
+  cursor: pointer;
+}
+
 
 #speed-id {
     color: #6f459e;
@@ -93,8 +110,8 @@ body {
   background-color:  #6f459e;
   outline: none;
   border-radius: 3px;
-
 }
+
 
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
