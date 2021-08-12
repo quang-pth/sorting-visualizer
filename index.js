@@ -53,41 +53,53 @@ sortSpeed.addEventListener("input", () => {
 const selectionBtn = document.getElementById("selection-btn");
 selectionBtn.addEventListener("click", () => {
   disable();
+  selectionBtn.style.backgroundColor = "#7d1eeb";
   SelectionSort(delayTime);
 });
 
 const bubbleBtn = document.getElementById("bubble-btn");
 bubbleBtn.addEventListener("click", () => {
   disable();
+  bubbleBtn.style.backgroundColor = "#7d1eeb";
   BubbleSort(delayTime);
 });
 
 const quickBtn = document.getElementById("quick-btn");
 quickBtn.addEventListener("click", () => {
   disable();
+  quickBtn.style.backgroundColor = "#7d1eeb";
   quickSort(delayTime);
 });
 
 const mergeBtn = document.getElementById("merge-btn");
 mergeBtn.addEventListener("click", () => {
   disable();
+  mergeBtn.style.backgroundColor = "#7d1eeb";
   mergeSort(delayTime);
 });
 
 const insertionBtn = document.getElementById("insertion-btn");
 insertionBtn.addEventListener("click", () => {
   disable();
+  insertionBtn.style.backgroundColor = "#7d1eeb";
   insertionSort(delayTime);
 });
 
 const heapBtn = document.getElementById("heap-btn");
 heapBtn.addEventListener("click", () => {
   disable();
+  heapBtn.style.backgroundColor = "#7d1eeb";
   heapSort(delayTime);
 });
 
 const radixBtn = document.getElementById("radix-btn");
 radixBtn.addEventListener("click", () => {
   disable();
+  radixBtn.style.backgroundColor = "#7d1eeb";
   radixSort(delayTime);
 });
+
+const resetBtn = document.getElementById("reset_btn");
+resetBtn.addEventListener("click", () => {
+  window.location.reload();
+})
