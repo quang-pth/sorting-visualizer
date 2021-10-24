@@ -6,4 +6,5 @@ This project is written in pure HTML&CSS&JS only, so it's easier for you even if
 **Note:
 This project is main for learning, so should not keep it as yours own.
 
+Link to view this project: https://quang-pth.github.io/sorting-visualizer/?fbclid=IwAR0kMDG1XEJ2O1ish_VfG3G340GAEdAGhQk9AQX5YIdz-FCdi7ximI-Zrpw
 
